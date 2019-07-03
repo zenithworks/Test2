@@ -8,8 +8,7 @@ resources:
    - repository: R1
      type: GitHub
      connection: Project1
-     source: jainamanjain/Repo1
-     name: Repo1
+     name: jainamanjain/Repo1
 
 jobs:
  - job: J2
