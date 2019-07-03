@@ -9,5 +9,5 @@ jobs:
    steps:
      - task: PublishPipelineArtifact@0
        inputs:
-         artifactName: 'A2'
+         artifactName: 'A1'
          targetPath: 'artifact1'
