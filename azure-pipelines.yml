@@ -14,6 +14,8 @@ jobs:
     #      targetPath: 'artifact1'
      - task: PublishBuildArtifacts@1
        inputs:
-         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-         ArtifactName: 'A1'
+         PathtoPublish: 'A1'
+         ArtifactName: 'A1-named'
          publishLocation: 'Container'
+     - powershell: |
+            ls $(Build.ArtifactStagingDirectory)/
