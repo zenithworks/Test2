@@ -17,10 +17,10 @@ jobs:
    steps:
       - download: R1
         artifact: 'artifact3'
-      - task: PublishBuildArtifacts@1
-        inputs:
-         PathtoPublish: 'artifact3'
-         ArtifactName: 'A1'
-         publishLocation: 'Container'
-      - powershell: |
-            ls $(Build.ArtifactStagingDirectory)/
+      # - task: PublishBuildArtifacts@1
+      #   inputs:
+      #    PathtoPublish: 'artifact3'
+      #    ArtifactName: 'A1'
+      #    publishLocation: 'Container'
+      # - powershell: |
+      #       ls $(Build.ArtifactStagingDirectory)/
