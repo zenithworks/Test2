@@ -9,17 +9,19 @@ resources:
      type: GitHub
      endpoint: GitHubConnection1
      name: jainamanjain/Repo1
+     version: c2d74536bd0d2267fd1f0c27a941f32e4415232f
+     branch: master
 
 jobs:
  - job: J2
    pool:
     name: default
    steps:
-      # - download: R1
+      - download: R1
       #   artifact: 'artifact3'
       - task: PublishBuildArtifacts@1
         inputs:
-         PathtoPublish: 'artifact1'
+         PathtoPublish: 'artifact3'
          ArtifactName: 'A1'
          publishLocation: 'Container'
       - powershell: |
