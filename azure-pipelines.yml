@@ -3,19 +3,24 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+resources:
+ repositories:
+   - repository: R1
+     type: GitHub
+     endpoint: GitHubConnection1
+     name: jainamanjain/Repo1
+
 jobs:
  - job: J2
    pool:
     name: default
    steps:
-    #  - task: PublishPipelineArtifact@0
-    #    inputs:
-    #      artifactName: 'A1'
-    #      targetPath: 'artifact1'
-     - task: PublishBuildArtifacts@1
-       inputs:
+      - download: R1
+        artifact: 'artifact3'
+      - task: PublishBuildArtifacts@1
+        inputs:
          PathtoPublish: 'artifact1'
          ArtifactName: 'A1'
          publishLocation: 'Container'
-     - powershell: |
+      - powershell: |
             ls $(Build.ArtifactStagingDirectory)/
