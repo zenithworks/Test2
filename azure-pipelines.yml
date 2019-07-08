@@ -19,7 +19,7 @@ jobs:
       #   artifact: 'artifact3'
       - task: PublishBuildArtifacts@1
         inputs:
-         PathtoPublish: 'artifact3'
+         PathtoPublish: 'artifact1'
          ArtifactName: 'A1'
          publishLocation: 'Container'
       - powershell: |
