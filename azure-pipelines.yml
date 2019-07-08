@@ -8,7 +8,12 @@ jobs:
    pool:
     name: default
    steps:
-     - task: PublishPipelineArtifact@0
+    #  - task: PublishPipelineArtifact@0
+    #    inputs:
+    #      artifactName: 'A1'
+    #      targetPath: 'artifact1'
+     - task: PublishBuildArtifacts@1
        inputs:
-         artifactName: 'A1'
-         targetPath: 'artifact1'
+         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+         ArtifactName: 'A1'
+         publishLocation: 'Container'
