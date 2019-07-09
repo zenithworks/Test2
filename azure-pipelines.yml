@@ -17,8 +17,7 @@ jobs:
    pool:
     name: default
    steps:
-      # - download: R1
-      #   artifact: 'artifact3'
+      - checkout: R1
       - task: PublishBuildArtifacts@1
         inputs:
          PathtoPublish: 'artifact1'
