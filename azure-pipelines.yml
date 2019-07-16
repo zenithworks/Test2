@@ -9,8 +9,6 @@ resources:
      type: GitHub
      endpoint: MyGithubConnection
      name: jainamanjain/Repo1
-     version: c2d74536bd0d2267fd1f0c27a941f32e4415232f
-     branch: master
 
 jobs:
  - job: J2
