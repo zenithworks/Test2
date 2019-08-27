@@ -11,22 +11,22 @@
 #      name: jainamanjain/Repo1
 
 jobs:
-#  - job: J1
-#    pool:
-#     name: default
-#    steps:
-#       - task: PublishBuildArtifacts@1
-#         inputs:
-#          PathtoPublish: 'artifact1.1'
-#          ArtifactName: 'A1.1'
-#          publishLocation: 'Container'
-#       - task: PublishBuildArtifacts@1
-#         inputs:
-#          PathtoPublish: 'artifact1.2'
-#          ArtifactName: 'A1.2'
-#          publishLocation: 'Container'
-#       - powershell: |
-#             ls $(Build.ArtifactStagingDirectory)/
+ - job: J1
+   pool:
+    name: default
+   steps:
+      - task: PublishBuildArtifacts@1
+        inputs:
+         PathtoPublish: 'artifact1.1'
+         ArtifactName: 'A1.1'
+         publishLocation: 'Container'
+      - task: PublishBuildArtifacts@1
+        inputs:
+         PathtoPublish: 'artifact1.2'
+         ArtifactName: 'A1.2'
+         publishLocation: 'Container'
+      - powershell: |
+            ls $(Build.ArtifactStagingDirectory)/
  - job: J2
    pool:
     name: default
