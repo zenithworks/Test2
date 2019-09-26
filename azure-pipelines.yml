@@ -3,12 +3,12 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-resources:
- repositories:
-   - repository: R1
-     type: GitHub
-     endpoint: MyGithubConnection
-     name: jainamanjain/Repo1
+# resources:
+#  repositories:
+#    - repository: R1
+#      type: GitHub
+#      endpoint: MyGithubConnection
+#      name: jainamanjain/Repo1
 
 jobs:
  - deployment: deploymentJob1
