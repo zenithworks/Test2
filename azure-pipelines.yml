@@ -11,27 +11,43 @@ resources:
      name: jainamanjain/Repo1
 
 jobs:
- - deployment: deploy
+ - deployment: deploymentJob1
    displayName: somedeploy
    pool:
     name: default
    environment: environment1
- - job: J1
-   pool:
-    name: default
-   steps:
-      - task: PublishBuildArtifacts@1
-        inputs:
-         PathtoPublish: 'artifact1.1'
-         ArtifactName: 'A1.1'
-         publishLocation: 'Container'
-      - task: PublishBuildArtifacts@1
-        inputs:
-         PathtoPublish: 'artifact1.2'
-         ArtifactName: 'A1.2'
-         publishLocation: 'Container'
-      - powershell: |
+   strategy:
+    runOnce:
+      deploy:
+        steps:
+         - task: PublishBuildArtifacts@1
+           inputs:
+            PathtoPublish: 'artifact1.1'
+            ArtifactName: 'A1.1'
+            publishLocation: 'Container'
+         - task: PublishBuildArtifacts@1
+           inputs:
+            PathtoPublish: 'artifact1.2'
+            ArtifactName: 'A1.2'
+            publishLocation: 'Container'
+         - powershell: |
             ls $(Build.ArtifactStagingDirectory)/
+#  - job: J1
+#    pool:
+#     name: default
+#    steps:
+      # - task: PublishBuildArtifacts@1
+      #   inputs:
+      #    PathtoPublish: 'artifact1.1'
+      #    ArtifactName: 'A1.1'
+      #    publishLocation: 'Container'
+      # - task: PublishBuildArtifacts@1
+      #   inputs:
+      #    PathtoPublish: 'artifact1.2'
+      #    ArtifactName: 'A1.2'
+      #    publishLocation: 'Container'
+      # - powershell: |
+      #       ls $(Build.ArtifactStagingDirectory)/
  - job: J2
    pool:
     name: default
