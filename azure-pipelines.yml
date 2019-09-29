@@ -62,4 +62,7 @@ jobs:
     name: default
    dependsOn: J2
    steps:
-      - download: 'A2'
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          artifactName: 'A2'
+          targetPath: $(Build.SourcesDirectory)/bin
