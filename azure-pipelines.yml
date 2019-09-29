@@ -57,15 +57,15 @@ jobs:
 #          PathtoPublish: 'artifact2'
 #          ArtifactName: 'A2'
 #          publishLocation: 'Container'
- - job: J3
-   pool:
-    name: default
-   dependsOn: deploymentJob1
-   steps:
-      - task: DownloadBuildArtifacts@0
-        inputs:
-          artifactName: 'A1.1'
-          downloadPath: '$(System.ArtifactStagingDirectory)'
+#  - job: J3
+#    pool:
+#     name: default
+#    dependsOn: deploymentJob1
+#    steps:
+#       - task: DownloadBuildArtifacts@0
+#         inputs:
+#           artifactName: 'A1.1'
+#           downloadPath: '$(System.ArtifactStagingDirectory)'
 
 #  - deployment: deploymentJob4
 #    environment: envionment4
