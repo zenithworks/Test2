@@ -48,28 +48,28 @@ jobs:
       #    publishLocation: 'Container'
       # - powershell: |
       #       ls $(Build.ArtifactStagingDirectory)/
-#  - job: J2
-#    pool:
-#     name: default
-#    steps:
-#       - task: PublishBuildArtifacts@1
-#         inputs:
-#          PathtoPublish: 'artifact2'
-#          ArtifactName: 'A2'
-#          publishLocation: 'Container'
-#  - job: J3
-#    pool:
-#     name: default
-#    dependsOn: J2
-#    steps:
-#       - task: DownloadBuildArtifacts@0
-#         inputs:
-#           artifactName: 'A2'
-#           downloadPath: '$(System.ArtifactStagingDirectory)'
+ - job: J2
+   pool:
+    name: default
+   steps:
+      - task: PublishBuildArtifacts@1
+        inputs:
+         PathtoPublish: 'artifact2'
+         ArtifactName: 'A2'
+         publishLocation: 'Container'
+ - job: J3
+   pool:
+    name: default
+   dependsOn: deploymentJob1
+   steps:
+      - task: DownloadBuildArtifacts@0
+        inputs:
+          artifactName: 'A1.1'
+          downloadPath: '$(System.ArtifactStagingDirectory)'
 
  - deployment: deploymentJob4
    environment: envionment4
-   dependsOn: deploymentJob1
+   dependsOn: J2
    pool: Default
    strategy:
     runOnce:
@@ -77,7 +77,7 @@ jobs:
        steps:
         - task: DownloadBuildArtifacts@0
           inputs:
-            downloadType: specific
-            itemPattern: '**'
-            # artifactName: 'A1.1'
+            # downloadType: specific
+            # itemPattern: '**'
+            artifactName: 'A2'
             downloadPath: '$(System.ArtifactStagingDirectory)'
