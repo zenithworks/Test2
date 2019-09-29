@@ -77,5 +77,6 @@ jobs:
        steps:
         - task: DownloadBuildArtifacts@0
           inputs:
+            downloadType: specific
             # artifactName: 'A1.1'
             downloadPath: '$(System.ArtifactStagingDirectory)'
