@@ -11,44 +11,44 @@
 #      name: jainamanjain/Repo1
 
 jobs:
- - deployment: deploymentJob1
-   displayName: somedeploy
-   pool:
-    name: default
-   environment: environment1
-   strategy:
-    runOnce:
-      deploy:
-        steps:
-         - checkout: self
-         - task: PublishBuildArtifacts@1
-           inputs:
-            PathtoPublish: 'artifact1.1'
-            ArtifactName: 'A1.1'
-            publishLocation: 'Container'
-         - task: PublishBuildArtifacts@1
-           inputs:
-            PathtoPublish: 'artifact1.2'
-            ArtifactName: 'A1.2'
-            publishLocation: 'Container'
-         - powershell: |
-            ls $(Build.ArtifactStagingDirectory)/
-#  - job: J1
+#  - deployment: deploymentJob1
+#    displayName: somedeploy
 #    pool:
 #     name: default
-#    steps:
-#       - task: PublishBuildArtifacts@1
-#         inputs:
-#          PathtoPublish: 'artifact1.1'
-#          ArtifactName: 'A1.1'
-#          publishLocation: 'Container'
-#       - task: PublishBuildArtifacts@1
-#         inputs:
-#          PathtoPublish: 'artifact1.2'
-#          ArtifactName: 'A1.2'
-#          publishLocation: 'Container'
-#       - powershell: |
+#    environment: environment1
+#    strategy:
+#     runOnce:
+#       deploy:
+#         steps:
+#          - checkout: self
+#          - task: PublishBuildArtifacts@1
+#            inputs:
+#             PathtoPublish: 'artifact1.1'
+#             ArtifactName: 'A1.1'
+#             publishLocation: 'Container'
+#          - task: PublishBuildArtifacts@1
+#            inputs:
+#             PathtoPublish: 'artifact1.2'
+#             ArtifactName: 'A1.2'
+#             publishLocation: 'Container'
+#          - powershell: |
 #             ls $(Build.ArtifactStagingDirectory)/
+ - job: J1
+   pool:
+    name: default
+   steps:
+      - task: PublishBuildArtifacts@1
+        inputs:
+         PathtoPublish: 'artifact1.1'
+         ArtifactName: 'A1.1'
+         publishLocation: 'Container'
+      - task: PublishBuildArtifacts@1
+        inputs:
+         PathtoPublish: 'artifact1.2'
+         ArtifactName: 'A1.2'
+         publishLocation: 'Container'
+      - powershell: |
+            ls $(Build.ArtifactStagingDirectory)/
  - job: J2
    pool:
     name: default
@@ -59,15 +59,15 @@ jobs:
          ArtifactName: 'A2'
          publishLocation: 'Container'
 
- - job: J3
-   pool:
-    name: default
-   dependsOn: deploymentJob1
-   steps:
-      - task: DownloadBuildArtifacts@0
-        inputs:
-          artifactName: 'A1.1'
-          downloadPath: '$(System.ArtifactStagingDirectory)'
+#  - job: J3
+#    pool:
+#     name: default
+#    dependsOn: deploymentJob1
+#    steps:
+#       - task: DownloadBuildArtifacts@0
+#         inputs:
+#           artifactName: 'A1.1'
+#           downloadPath: '$(System.ArtifactStagingDirectory)'
 
  - deployment: deploymentJob4
    environment: envionment4
