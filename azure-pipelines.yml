@@ -62,7 +62,7 @@ jobs:
  - job: J3
    pool:
     name: default
-   dependsOn: deploymentJob1
+   dependsOn: J1
    steps:
       - task: DownloadBuildArtifacts@0
         inputs:
