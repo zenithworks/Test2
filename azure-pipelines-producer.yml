@@ -4,3 +4,8 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'artifact1.1'
+    ArtifactName: 'A1.1'
+    publishLocation: 'Container'
