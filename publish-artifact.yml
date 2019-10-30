@@ -1,0 +1,54 @@
+# Starter pipeline
+# Start with a  minimal pipeline that you can customize to build and deploy your code.
+# Add  steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+
+jobs:
+ - job: J1
+   pool: demopool
+   steps:
+      - task: PublishBuildArtifacts@1
+        inputs:
+         PathtoPublish: 'artifact1.1'
+         ArtifactName: 'A1.1'
+         publishLocation: 'Container'
+      - task: PublishBuildArtifacts@1
+        inputs:
+         PathtoPublish: 'artifact1.2'
+         ArtifactName: 'A1.2'
+         publishLocation: 'Container'
+      - powershell: |
+            ls $(Build.ArtifactStagingDirectory)/
+ - job: J2
+   pool: demopool
+   steps:
+      - task: PublishBuildArtifacts@1
+        inputs:
+         PathtoPublish: 'artifact2'
+         ArtifactName: 'A2'
+         publishLocation: 'Container'
+
+ - job: J3
+   pool: demopool
+   dependsOn: J1
+   steps:
+      - task: DownloadBuildArtifacts@0
+        inputs:
+          artifactName: 'A1.1'
+          downloadPath: '$(System.ArtifactStagingDirectory)'
+
+ - deployment: deploymentJob4
+   environment: envionment4
+   dependsOn: J2
+   pool: demopool
+   strategy:
+    runOnce:
+      deploy:
+       steps:
+        - task: DownloadBuildArtifacts@0
+          inputs:
+            # downloadType: specific
+            # itemPattern: '**'
+            artifactName: 'A2'
+            downloadPath: '$(System.ArtifactStagingDirectory)'
